@@ -12,7 +12,7 @@ public class ElementFactory : MonoBehaviour
 
     private void Start()
     {
-
+        CreateElement();
     }
 
     // Update is called once per frame
@@ -20,15 +20,13 @@ public class ElementFactory : MonoBehaviour
     {
         //if (!Target) return;
 
-        if (Input.GetKeyDown(KeyCode.Space) && !Target)
-        {
-            //string name = Target.CurAnimationName == "idle" ? "attack" : "idle";
-            //Target.Play(name);
+        //if (Input.GetKeyDown(KeyCode.Space) && !Target)
+        //{
+        //    string name = Target.CurAnimationName == "idle" ? "attack" : "idle";
+        //    Target.Play(name);
 
-            //CreateElement();
-
-            CreateElement();
-        }
+        //    CreateElement();
+        //}
     }
 
     private async void CreateElement()
@@ -54,13 +52,71 @@ public class ElementFactory : MonoBehaviour
         // load from url
         // https://osd-alpha.tooqing.com/user_avatar/texture/0cfe7348443bd59fb224891811e10626dd29c94dv1.png
 
+        // get all sprites from remote
         sprites = await DownloadSpriteSheet();
+
+        // set animation from PI
+        string[] frameNames = new string[41] 
+        {
+            "2.png?t=1643252927845",
+            "3.png?t=1643252927846",
+            "4.png?t=1643252927847",
+            "5.png?t=1643252927849",
+            "6.png?t=1643252927850",
+            "7.png?t=1643252927851",
+            "8.png?t=1643252927853",
+            "9.png?t=1643252927854",
+            "10.png?t=1643252927678",
+            "11.png?t=1643252927678",
+            "12.png?t=1643252927680",
+            "13.png?t=1643252927682",
+            "14.png?t=1643252927835",
+            "15.png?t=1643252927836",
+            "16.png?t=1643252927838",
+            "17.png?t=1643252927839",
+            "18.png?t=1643252927841",
+            "19.png?t=1643252927841",
+            "20.png?t=1643252927855",
+            "21.png?t=1643252927856",
+            "22.png?t=1643252927857",
+            "23.png?t=1643252927859",
+            "24.png?t=1643252927665",
+            "25.png?t=1643252927673",
+            "26.png?t=1643252927674",
+            "27.png?t=1643252927675",
+            "28.png?t=1643252927676",
+            "29.png?t=1643252927677",
+            "30.png?t=1643252927679",
+            "31.png?t=1643252927681",
+            "32.png?t=1643252927682",
+            "33.png?t=1643252927836",
+            "34.png?t=1643252927837",
+            "35.png?t=1643252927839",
+            "36.png?t=1643252927840",
+            "37.png?t=1643252927842",
+            "38.png?t=1643252927843",
+            "39.png?t=1643252927844",
+            "40.png?t=1643252927858",
+            "41.png?t=1643252927860",
+            "blank"
+        };
+        Sprite[] animationSprites = new Sprite[frameNames.Length];
+        for (int i = 0; i < frameNames.Length; i++)
+        {
+            var findSprite = sprites.Find((x) => x.name == frameNames[i]);
+            if (!findSprite)
+            {
+                Debug.LogError($"can not find sprite: {frameNames[i]}");
+                return;
+            }
+            animationSprites[i] = findSprite;
+        }
 
         GameObject ins = Instantiate(Resources.Load<GameObject>("Elements/ElementTemplate")) as GameObject;
         Target = ins.GetComponent<SpriteSheetAnimation>();
         AnimationStruct oneAnimation = new AnimationStruct();
         oneAnimation.Name = "idle";
-        oneAnimation.Sprites = sprites.ToArray();
+        oneAnimation.Sprites = animationSprites;
         oneAnimation.Loop = true;
         Target.SetAnimationSprites(new List<AnimationStruct>() { oneAnimation });
         Target.Play("idle");
@@ -99,11 +155,11 @@ public class ElementFactory : MonoBehaviour
             Debug.Log($"parse succeed: {jsonResult}");
             foreach (var f in jsonResult.frames)
             {
-                Sprite sprite = Sprite.Create(tex, SpriteSheetRectToUnitySpriteEditorRect(f.frame, texWidth, texHeight), new Vector2(0, 0));
+                Sprite sprite = Sprite.Create(tex, SpriteSheetRectToUnitySpriteEditorRect(f.frame, texWidth, texHeight), new Vector2(0, 1));
                 sprite.name = f.filename;
                 sprites.Add(sprite);
             }
-            
+
             return sprites;
         }
         catch (Exception ex)
@@ -111,8 +167,6 @@ public class ElementFactory : MonoBehaviour
             Debug.LogError($"cannot parse response {jsonResponse} . {ex.Message}");
             return sprites;
         }
-
-        
     }
 
     private Rect SpriteSheetRectToUnitySpriteEditorRect(SpriteSheetFrameRect spriteSheetFrameRect, int texWidth, int texHeight)

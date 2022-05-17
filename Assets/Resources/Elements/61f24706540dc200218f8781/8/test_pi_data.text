@@ -1,0 +1,290 @@
+{
+    "node": {
+        "id": 1388403363,
+        "type": 1,
+        "Parent": 0,
+        "name": "钓鱼-触手2",
+        "sn": "61f24706540dc200218f8781"
+    },
+    "entity": [
+        {
+            "node": {
+                "id": 1448020147,
+                "type": 3,
+                "Parent": 1388403363,
+                "name": "钓鱼-触手2",
+                "sn": "61f24706540dc200218f8781"
+            },
+            "version": "8",
+            "layer": 2
+        }
+    ],
+    "display": [
+        {
+            "node": {
+                "id": 391282878,
+                "type": 8,
+                "Parent": 652043056,
+                "name": "显示元件",
+                "sn": ""
+            },
+            "dataPath": "pixelpai/ElementNode/61f24706540dc200218f8781/8/61f24706540dc200218f8781.json",
+            "texturePath": "pixelpai/ElementNode/61f24706540dc200218f8781/8/61f24706540dc200218f8781.png"
+        }
+    ],
+    "attr": [
+        {
+            "node": {
+                "id": 1857840454,
+                "type": 9,
+                "Parent": 1448020147,
+                "name": "自定义属性",
+                "sn": ""
+            },
+            "key": "remoteClick",
+            "boolVal": true,
+            "valueType": 3
+        }
+    ],
+    "animations": [
+        {
+            "node": {
+                "id": 652043056,
+                "type": 11,
+                "Parent": 1448020147,
+                "name": "动画",
+                "sn": ""
+            },
+            "defaultAnimation": "idle",
+            "dir": 3
+        }
+    ],
+    "animationdatas": [
+        {
+            "node": {
+                "id": 412808063,
+                "type": 22,
+                "Parent": 652043056,
+                "name": "idle",
+                "sn": ""
+            },
+            "frameRate": 10,
+            "walkableArea": "0,0,0,0&0,0,0,0&0,0,0,0&0,0,0,0",
+            "collisionArea": "1,1,1,1&1,1,1,1&1,1,1,1&1,1,1,1",
+            "loop": false,
+            "originPoint": [
+                2,
+                2
+            ],
+            "baseLoc": "0,0",
+            "interactiveArea": [
+                {
+                    "x": -1,
+                    "y": -1
+                }
+            ],
+            "frameDuration": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "layer": [
+                {
+                    "frameName": [
+                        "2.png?t=1643252927845",
+                        "3.png?t=1643252927846",
+                        "4.png?t=1643252927847",
+                        "5.png?t=1643252927849",
+                        "6.png?t=1643252927850",
+                        "7.png?t=1643252927851",
+                        "8.png?t=1643252927853",
+                        "9.png?t=1643252927854",
+                        "10.png?t=1643252927678",
+                        "11.png?t=1643252927678",
+                        "12.png?t=1643252927680",
+                        "13.png?t=1643252927682",
+                        "14.png?t=1643252927835",
+                        "15.png?t=1643252927836",
+                        "16.png?t=1643252927838",
+                        "17.png?t=1643252927839",
+                        "18.png?t=1643252927841",
+                        "19.png?t=1643252927841",
+                        "20.png?t=1643252927855",
+                        "21.png?t=1643252927856",
+                        "22.png?t=1643252927857",
+                        "23.png?t=1643252927859",
+                        "24.png?t=1643252927665",
+                        "25.png?t=1643252927673",
+                        "26.png?t=1643252927674",
+                        "27.png?t=1643252927675",
+                        "28.png?t=1643252927676",
+                        "29.png?t=1643252927677",
+                        "30.png?t=1643252927679",
+                        "31.png?t=1643252927681",
+                        "32.png?t=1643252927682",
+                        "33.png?t=1643252927836",
+                        "34.png?t=1643252927837",
+                        "35.png?t=1643252927839",
+                        "36.png?t=1643252927840",
+                        "37.png?t=1643252927842",
+                        "38.png?t=1643252927843",
+                        "39.png?t=1643252927844",
+                        "40.png?t=1643252927858",
+                        "41.png?t=1643252927860",
+                        "blank"
+                    ],
+                    "offsetLoc": {
+                        "x": -81,
+                        "y": -122
+                    },
+                    "frameVisible": [
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true
+                    ],
+                    "id": 985524295
+                }
+            ]
+        },
+        {
+            "node": {
+                "id": 1169887218,
+                "type": 22,
+                "Parent": 652043056,
+                "name": "hide",
+                "sn": ""
+            },
+            "frameRate": 5,
+            "loop": true,
+            "originPoint": [
+                0,
+                0
+            ],
+            "baseLoc": "0,0",
+            "frameDuration": [
+                0
+            ],
+            "layer": [
+                {
+                    "frameName": [
+                        "blank"
+                    ],
+                    "offsetLoc": {
+                        "x": 0,
+                        "y": 0
+                    },
+                    "frameVisible": [
+                        true
+                    ],
+                    "id": 1144122032
+                }
+            ]
+        }
+    ],
+    "settings": {
+        "node": {
+            "id": 1834063742,
+            "type": 19,
+            "Parent": 1388403363,
+            "name": "Object-1834063742",
+            "sn": ""
+        },
+        "maxNumber": 10,
+        "spawnpointid": 0
+    },
+    "assets": {
+        "node": {
+            "id": 1755124301,
+            "type": 32,
+            "Parent": 1388403363,
+            "name": "资源仓库",
+            "sn": ""
+        }
+    },
+    "mods": {
+        "node": {
+            "id": 1275975138,
+            "type": 36,
+            "Parent": 1388403363,
+            "name": "ModesNode",
+            "sn": ""
+        }
+    },
+    "version": "0"
+}
