@@ -97,5 +97,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 355595cea16eb5a48861b7b69617560e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FrameRate: 24
+  FrameRate: 30
   Animations: []

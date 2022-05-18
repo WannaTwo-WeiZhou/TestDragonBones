@@ -8,100 +8,33 @@ using UnityEngine.Networking;
 
 public class ElementFactory : MonoBehaviour
 {
-    public SpriteSheetAnimation Target;
+    public int Count = 100;
+    // https://osd-alpha.tooqing.com/pixelpai/ElementNode/61f24706540dc200218f8781/8/61f24706540dc200218f8781.pi
+    public string[] PIUrls;
 
     private void Start()
     {
-        CreateElement();
+        foreach (string url in PIUrls)
+        {
+            CreateElement(url);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private async void CreateElement(string url)
     {
-        //if (!Target) return;
-
-        //if (Input.GetKeyDown(KeyCode.Space) && !Target)
-        //{
-        //    string name = Target.CurAnimationName == "idle" ? "attack" : "idle";
-        //    Target.Play(name);
-
-        //    CreateElement();
-        //}
-    }
-
-    private async void CreateElement()
-    {
-        List<Sprite> sprites = new List<Sprite>();
-        // load from local
-        // 1
-        //Object[] data = AssetDatabase.LoadAllAssetsAtPath("Assets/Resources/Elements/61f24706540dc200218f8781/8/61f24706540dc200218f8781_edited.png");
-        //foreach (Object o in data)
-        //{
-        //    if (o is Sprite)
-        //    {
-        //        sprites.Add(o as Sprite);
-        //    }
-        //}
-        // 2
-        //var resSprites = Resources.LoadAll<Sprite>("Elements/61f24706540dc200218f8781/8/61f24706540dc200218f8781_edited");
-        //foreach (Sprite one in resSprites)
-        //{
-        //    sprites.Add(one);
-        //}
-
-        // load from url
-        // https://osd-alpha.tooqing.com/user_avatar/texture/0cfe7348443bd59fb224891811e10626dd29c94dv1.png
+        GameCapsule.ConfigObjects.ElementNode element = await DownloadPIAndDesrializeToElementNode(url);
+        string defaultAniName = element.animations.defaultAnimationName;
+        Debug.Log($"elementNode: {element}");
 
         // get all sprites from remote
-        sprites = await DownloadSpriteSheet();
+        string imgUrl = url.Replace(".pi", ".png");
+        string jsonUrl = url.Replace(".pi", ".json");
+        List<Sprite> sprites = await DownloadSpriteSheet(imgUrl, jsonUrl);
 
         // set animation from PI
-        string[] frameNames = new string[41] 
-        {
-            "2.png?t=1643252927845",
-            "3.png?t=1643252927846",
-            "4.png?t=1643252927847",
-            "5.png?t=1643252927849",
-            "6.png?t=1643252927850",
-            "7.png?t=1643252927851",
-            "8.png?t=1643252927853",
-            "9.png?t=1643252927854",
-            "10.png?t=1643252927678",
-            "11.png?t=1643252927678",
-            "12.png?t=1643252927680",
-            "13.png?t=1643252927682",
-            "14.png?t=1643252927835",
-            "15.png?t=1643252927836",
-            "16.png?t=1643252927838",
-            "17.png?t=1643252927839",
-            "18.png?t=1643252927841",
-            "19.png?t=1643252927841",
-            "20.png?t=1643252927855",
-            "21.png?t=1643252927856",
-            "22.png?t=1643252927857",
-            "23.png?t=1643252927859",
-            "24.png?t=1643252927665",
-            "25.png?t=1643252927673",
-            "26.png?t=1643252927674",
-            "27.png?t=1643252927675",
-            "28.png?t=1643252927676",
-            "29.png?t=1643252927677",
-            "30.png?t=1643252927679",
-            "31.png?t=1643252927681",
-            "32.png?t=1643252927682",
-            "33.png?t=1643252927836",
-            "34.png?t=1643252927837",
-            "35.png?t=1643252927839",
-            "36.png?t=1643252927840",
-            "37.png?t=1643252927842",
-            "38.png?t=1643252927843",
-            "39.png?t=1643252927844",
-            "40.png?t=1643252927858",
-            "41.png?t=1643252927860",
-            "blank"
-        };
-        Sprite[] animationSprites = new Sprite[frameNames.Length];
-        for (int i = 0; i < frameNames.Length; i++)
+        List<string> frameNames = element.animations.getDefaultAnimationData().layer[0].frameName;
+        Sprite[] animationSprites = new Sprite[frameNames.Count];
+        for (int i = 0; i < frameNames.Count; i++)
         {
             var findSprite = sprites.Find((x) => x.name == frameNames[i]);
             if (!findSprite)
@@ -112,21 +45,53 @@ public class ElementFactory : MonoBehaviour
             animationSprites[i] = findSprite;
         }
 
-        GameObject ins = Instantiate(Resources.Load<GameObject>("Elements/ElementTemplate")) as GameObject;
-        Target = ins.GetComponent<SpriteSheetAnimation>();
-        AnimationStruct oneAnimation = new AnimationStruct();
-        oneAnimation.Name = "idle";
-        oneAnimation.Sprites = animationSprites;
-        oneAnimation.Loop = true;
-        Target.SetAnimationSprites(new List<AnimationStruct>() { oneAnimation });
-        Target.Play("idle");
+        for (int i = 0; i < Count; i++)
+        {
+            CreateInstance(defaultAniName, animationSprites);
+        }
+
+        Debug.Log($"time: {Time.realtimeSinceStartup}");
     }
 
-    async Task<List<Sprite>> DownloadSpriteSheet()
+    private void CreateInstance(string aniName, Sprite[] animationSprites)
+    {
+        GameObject ins = Instantiate(Resources.Load<GameObject>("Elements/ElementTemplate")) as GameObject;
+        ins.transform.position = new Vector2(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f));
+        var ani = ins.GetComponent<SpriteSheetAnimation>();
+        AnimationStruct oneAnimation = new AnimationStruct();
+        oneAnimation.Name = aniName;
+        oneAnimation.Sprites = animationSprites;
+        oneAnimation.Loop = true;
+        ani.SetAnimationSprites(new List<AnimationStruct>() { oneAnimation });
+        ani.Play(aniName);
+    }
+
+    async Task<GameCapsule.ConfigObjects.ElementNode> DownloadPIAndDesrializeToElementNode(string url)
+    {
+        UnityWebRequest requestJson = UnityWebRequest.Get(url);
+        requestJson.SetRequestHeader("Content-Type", "application/json");
+        var jsonOperation = requestJson.SendWebRequest();
+        while (!jsonOperation.isDone)
+            await Task.Yield();
+
+        if (requestJson.result != UnityWebRequest.Result.Success)
+            return null;
+
+
+        // ½âÎöpiÎÄ¼þ
+        var capsule = new GameCapsule.Capsule();
+        byte[] pi = requestJson.downloadHandler.data;
+        capsule.deserialize(pi);
+        Debug.Log("Capsule: " + capsule);
+
+        return (GameCapsule.ConfigObjects.ElementNode)capsule.root.children[0];
+    }
+
+    async Task<List<Sprite>> DownloadSpriteSheet(string imgUrl, string jsonUrl)
     {
         List<Sprite> sprites = new List<Sprite>();
         // download img
-        UnityWebRequest requestImg = UnityWebRequestTexture.GetTexture("https://osd-alpha.tooqing.com/pixelpai/ElementNode/61f24706540dc200218f8781/8/61f24706540dc200218f8781.png");
+        UnityWebRequest requestImg = UnityWebRequestTexture.GetTexture(imgUrl);
         var imgOperation = requestImg.SendWebRequest();
         while (!imgOperation.isDone)
             await Task.Yield();
@@ -139,7 +104,7 @@ public class ElementFactory : MonoBehaviour
         int texHeight = tex.height;
 
         // download json
-        UnityWebRequest requestJson = UnityWebRequest.Get("https://osd-alpha.tooqing.com/pixelpai/ElementNode/61f24706540dc200218f8781/8/61f24706540dc200218f8781.json");
+        UnityWebRequest requestJson = UnityWebRequest.Get(jsonUrl);
         requestJson.SetRequestHeader("Content-Type", "application/json");
         var jsonOperation = requestJson.SendWebRequest();
         while (!jsonOperation.isDone)
@@ -152,10 +117,10 @@ public class ElementFactory : MonoBehaviour
         try
         {
             var jsonResult = JsonUtility.FromJson<SpriteSheetTexture>(jsonResponse);
-            Debug.Log($"parse succeed: {jsonResult}");
+            Debug.Log($"parse succeed: {jsonResult.frames}");
             foreach (var f in jsonResult.frames)
             {
-                Sprite sprite = Sprite.Create(tex, SpriteSheetRectToUnitySpriteEditorRect(f.frame, texWidth, texHeight), new Vector2(0, 1));
+                Sprite sprite = Sprite.Create(tex, SpriteSheetRectToUnitySpriteEditorRect(f.frame, texWidth, texHeight), new Vector2(0.5f, 0.5f));
                 sprite.name = f.filename;
                 sprites.Add(sprite);
             }

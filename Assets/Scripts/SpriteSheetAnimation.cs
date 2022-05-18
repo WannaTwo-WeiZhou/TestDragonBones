@@ -40,6 +40,7 @@ public class SpriteSheetAnimation : MonoBehaviour
     {
         if (!AnimationMap.ContainsKey(aniName))
         {
+            Debug.LogError($"not contain key: {aniName}");
             return;
         }
 

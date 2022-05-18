@@ -1,5 +1,11 @@
 {
   "dependencies": {
+    "com.digi.gamecapsule": {
+      "version": "file:D:/MyDocuments/Projects/picatownmobile/Packages/com.digi.gamecapsule",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {}
+    },
     "com.unity.2d.animation": {
       "version": "7.0.4",
       "depth": 1,
