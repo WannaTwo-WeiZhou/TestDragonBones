@@ -14,21 +14,41 @@ public class ElementFactory : MonoBehaviour
 
     private void Start()
     {
-        foreach (string url in PIUrls)
-        {
-            CreateElement(url);
-        }
+        //foreach (string url in PIUrls)
+        //{
+        //    CreateElement(url);
+        //}
     }
 
-    private async void CreateElement(string url)
+    public async void CreateElement(GameCapsule.ConfigObjects.ElementNode sourceNode)
     {
-        GameCapsule.ConfigObjects.ElementNode element = await DownloadPIAndDesrializeToElementNode(url);
-        string defaultAniName = element.animations.defaultAnimationName;
-        Debug.Log($"elementNode: {element}");
+        if (sourceNode.avatar != null) return;
 
-        // get all sprites from remote
-        string imgUrl = url.Replace(".pi", ".png");
-        string jsonUrl = url.Replace(".pi", ".json");
+        string imgUrl;
+        string jsonUrl;
+        GameCapsule.ConfigObjects.ElementNode element;
+        if (sourceNode.animations == null || 
+            String.IsNullOrEmpty(sourceNode.animations.display?.texturePath) ||
+            String.IsNullOrEmpty(sourceNode.animations.display?.dataPath))
+        {
+            string url = $"https://osd-alpha.tooqing.com/pixelpai/ElementNode/{sourceNode.sn}/{sourceNode.version}/{sourceNode.sn}.pi";
+            element = await DownloadPIAndDesrializeToElementNode(url);
+
+            // get all sprites from remote
+            imgUrl = url.Replace(".pi", ".png");
+            jsonUrl = url.Replace(".pi", ".json");
+        }
+        else
+        {
+            imgUrl = "https://osd-alpha.tooqing.com/" + sourceNode.animations.display.texturePath;
+            jsonUrl = "https://osd-alpha.tooqing.com/" + sourceNode.animations.display.dataPath;
+            element = sourceNode;
+        }
+
+        if (element?.animations == null) return;
+        if (element?.location == null) return;
+
+        string defaultAniName = element.animations.defaultAnimationName;
         List<Sprite> sprites = await DownloadSpriteSheet(imgUrl, jsonUrl);
 
         // set animation from PI
@@ -45,18 +65,20 @@ public class ElementFactory : MonoBehaviour
             animationSprites[i] = findSprite;
         }
 
-        for (int i = 0; i < Count; i++)
-        {
-            CreateInstance(defaultAniName, animationSprites);
-        }
+        //for (int i = 0; i < Count; i++)
+        //{
+            CreateInstance(new Vector2(element.location.x * 0.01f, -element.location.y * 0.01f), 
+                defaultAniName, animationSprites);
+        //}
 
         Debug.Log($"time: {Time.realtimeSinceStartup}");
     }
 
-    private void CreateInstance(string aniName, Sprite[] animationSprites)
+    private void CreateInstance(Vector2 pos, string aniName, Sprite[] animationSprites)
     {
         GameObject ins = Instantiate(Resources.Load<GameObject>("Elements/ElementTemplate")) as GameObject;
-        ins.transform.position = new Vector2(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f));
+        ins.transform.SetParent(transform);
+        ins.transform.position = pos;
         var ani = ins.GetComponent<SpriteSheetAnimation>();
         AnimationStruct oneAnimation = new AnimationStruct();
         oneAnimation.Name = aniName;
