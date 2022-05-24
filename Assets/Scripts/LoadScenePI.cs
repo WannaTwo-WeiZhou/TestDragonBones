@@ -49,9 +49,9 @@ public class LoadScenePI : MonoBehaviour
 
         // ½âÎöpiÎÄ¼þ
         var capsule = new GameCapsule.Capsule();
-        byte[] pi = requestJson.downloadHandler.data;
+        //byte[] pi = requestJson.downloadHandler.data;
 
-        //byte[] pi = File.ReadAllBytes("Assets/Resources/Scene/1024433542.pi");
+        byte[] pi = File.ReadAllBytes("Assets/Resources/Scene/1024433542.pi");
         capsule.deserialize(pi);
 
         var sceneNode = capsule.root.children.Find((x) => (OpDef.NodeType)x.type == OpDef.NodeType.SceneNodeType) as GameCapsule.ConfigObjects.SceneNode;
