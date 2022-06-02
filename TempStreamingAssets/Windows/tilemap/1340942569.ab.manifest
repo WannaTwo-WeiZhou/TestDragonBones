@@ -1,0 +1,45 @@
+ManifestFileVersion: 0
+CRC: 2596665450
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: be7c5bc3edc585e0d18212965873d895
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 766344d002067d29eec1ae7dee599881
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 9afdeaae1bb27d6418d5d8cd5165faed, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 6625a2c215475fa44b1c76c4ae978948, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: eec2c2b638f63854f80d6b6f12a070d9, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 60eadddeab0d66d4084aca14d14cbcfc, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+- Class: 156049354
+  Script: {instanceID: 0}
+- Class: 483693784
+  Script: {instanceID: 0}
+- Class: 1839735485
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers:
+- AssemblyName: SuperTiled2Unity
+  ClassName: SuperTiled2Unity.CustomProperty
+Assets:
+- Assets/HotFix/Tilemap/1340942569-map.tmx
+Dependencies: []

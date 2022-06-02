@@ -1,21 +1,20 @@
+using SuperTiled2Unity;
+using SuperTiled2Unity.Editor;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.Tilemaps;
 
-public class LoadElementAB : MonoBehaviour
+public class LoadTilemapAB : MonoBehaviour
 {
-    public int Count = 100;
-    // http://osd-alpha.tooqing.com/61f24706540dc200218f8781_8
-    public string[] ABUrls;
-
     async Task Start()
     {
-        foreach (string url in ABUrls)
-        {
-            await InstantiateObject(url);
-        }
+        string url = "file:///" + Application.dataPath + "/../TempStreamingAssets/Windows/tilemap/1340942569.ab";
+        await InstantiateObject(url);
+
     }
 
     async Task InstantiateObject(string url)
@@ -33,13 +32,10 @@ public class LoadElementAB : MonoBehaviour
         }
 
         AssetBundle bundle = UnityEngine.Networking.DownloadHandlerAssetBundle.GetContent(request);
-        GameObject element = bundle.LoadAsset<GameObject>("61f24706540dc200218f8781_8");
-        for (int i = 0; i < Count; i++)
-        {
-            GameObject go = Instantiate(element);
-            go.transform.position = new Vector2(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f));
-        }
-
-        Debug.Log($"time: {Time.realtimeSinceStartup}");
+        var tileset = ScriptableObject.FindObjectOfType<SuperTileset>();
+        GameObject prefab = bundle.LoadAsset<GameObject>("1340942569-map");
+        GameObject go = Instantiate(prefab);
+        var superMap = go.GetComponent<SuperMap>();
+        var tilemap = go.GetComponentInChildren<Tilemap>();
     }
 }

@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.5" tiledversion="1.7.1" orientation="isometric" renderorder="left-down" width="20" height="26" tilewidth="60" tileheight="30" infinite="0" nextlayerid="2" nextobjectid="1">
+ <tileset firstgid="1" name="ground" tilewidth="64" tileheight="60" tilecount="64" columns="16">
+  <image source="ground.png" width="1024" height="240"/>
+  <tile id="0">
+   <properties>
+    <property name="sn" value="609e3ff237e2f4516bb44349"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="sn" value="60acc488f24a9d315bfe85ec"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="sn" value="60acc43abd583131a147c2fa"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="sn" value="60acc401bd583131a147c2f9"/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="sn" value="60acc3cf63f983310e9f5d4f"/>
+   </properties>
+  </tile>
+  <tile id="5">
+   <properties>
+    <property name="sn" value="60acc3aebd583131a147c2f7"/>
+   </properties>
+  </tile>
+  <tile id="6">
+   <properties>
+    <property name="sn" value="60acc36f0c974f3154d6d738"/>
+   </properties>
+  </tile>
+  <tile id="7">
+   <properties>
+    <property name="sn" value="60acc32163f983310e9f5d4c"/>
+   </properties>
+  </tile>
+  <tile id="8">
+   <properties>
+    <property name="sn" value="60acc2f25f699531b34ddccd"/>
+   </properties>
+  </tile>
+  <tile id="9">
+   <properties>
+    <property name="sn" value="60acc29cc27a6c310da184ea"/>
+   </properties>
+  </tile>
+  <tile id="10">
+   <properties>
+    <property name="sn" value="60acc2506e389731b2c8ff21"/>
+   </properties>
+  </tile>
+  <tile id="11">
+   <properties>
+    <property name="sn" value="60acc211bd583131a147c2e1"/>
+   </properties>
+  </tile>
+  <tile id="12">
+   <properties>
+    <property name="sn" value="60acc1bf10bb4131ca4c4969"/>
+   </properties>
+  </tile>
+  <tile id="13">
+   <properties>
+    <property name="sn" value="609e4820d7de12514f229296"/>
+   </properties>
+  </tile>
+  <tile id="14">
+   <properties>
+    <property name="sn" value="609e4806583c9b518320871c"/>
+   </properties>
+  </tile>
+  <tile id="15">
+   <properties>
+    <property name="sn" value="609e47ed972db1513b53f1cb"/>
+   </properties>
+  </tile>
+  <tile id="16">
+   <properties>
+    <property name="sn" value="609e47d6972db1513b53f1c9"/>
+   </properties>
+  </tile>
+  <tile id="17">
+   <properties>
+    <property name="sn" value="609e47bcf4aade510892adc3"/>
+   </properties>
+  </tile>
+  <tile id="18">
+   <properties>
+    <property name="sn" value="609e479ed0cc6750df098618"/>
+   </properties>
+  </tile>
+  <tile id="19">
+   <properties>
+    <property name="sn" value="609e477da186fd5127276048"/>
+   </properties>
+  </tile>
+  <tile id="20">
+   <properties>
+    <property name="sn" value="609e47631ecf947d46803cc8"/>
+   </properties>
+  </tile>
+  <tile id="21">
+   <properties>
+    <property name="sn" value="609e4748f4aade510892adc2"/>
+   </properties>
+  </tile>
+  <tile id="22">
+   <properties>
+    <property name="sn" value="609e46ad7bec595172a677fd"/>
+   </properties>
+  </tile>
+  <tile id="23">
+   <properties>
+    <property name="sn" value="609e4684a186fd5127276046"/>
+   </properties>
+  </tile>
+  <tile id="24">
+   <properties>
+    <property name="sn" value="609e4641e8ce7151026a3fa7"/>
+   </properties>
+  </tile>
+  <tile id="25">
+   <properties>
+    <property name="sn" value="609e44ce5f049a513c7c24e4"/>
+   </properties>
+  </tile>
+  <tile id="26">
+   <properties>
+    <property name="sn" value="609e44abd0cc6750df098616"/>
+   </properties>
+  </tile>
+  <tile id="27">
+   <properties>
+    <property name="sn" value="609e448b5f049a513c7c24e2"/>
+   </properties>
+  </tile>
+  <tile id="28">
+   <properties>
+    <property name="sn" value="609e4410d0cc6750df098615"/>
+   </properties>
+  </tile>
+  <tile id="29">
+   <properties>
+    <property name="sn" value="609e4012d0cc6750df098614"/>
+   </properties>
+  </tile>
+  <tile id="30">
+   <properties>
+    <property name="sn" value="609e3fb4d5815b512612a1f6"/>
+   </properties>
+  </tile>
+  <tile id="31">
+   <properties>
+    <property name="sn" value="609e3a8ba186fd5127276045"/>
+   </properties>
+  </tile>
+  <tile id="32">
+   <properties>
+    <property name="sn" value="6142a200184873004a3adce1"/>
+   </properties>
+  </tile>
+  <tile id="33">
+   <properties>
+    <property name="sn" value="6142a235184873004a3adce3"/>
+   </properties>
+  </tile>
+  <tile id="34">
+   <properties>
+    <property name="sn" value="6142a26d8244320014bb9b36"/>
+   </properties>
+  </tile>
+  <tile id="35">
+   <properties>
+    <property name="sn" value="6142a2a98244320014bb9b38"/>
+   </properties>
+  </tile>
+  <tile id="36">
+   <properties>
+    <property name="sn" value="6142a308184873004a3adce9"/>
+   </properties>
+  </tile>
+  <tile id="37">
+   <properties>
+    <property name="sn" value="6142a3958244320014bb9b41"/>
+   </properties>
+  </tile>
+  <tile id="38">
+   <properties>
+    <property name="sn" value="6142a476184873004a3adcef"/>
+   </properties>
+  </tile>
+  <tile id="39">
+   <properties>
+    <property name="sn" value="6142a4c5184873004a3adcf1"/>
+   </properties>
+  </tile>
+  <tile id="40">
+   <properties>
+    <property name="sn" value="6142a5928244320014bb9b4c"/>
+   </properties>
+  </tile>
+  <tile id="41">
+   <properties>
+    <property name="sn" value="6142a6288244320014bb9b4f"/>
+   </properties>
+  </tile>
+  <tile id="42">
+   <properties>
+    <property name="sn" value="6142a6e48244320014bb9b54"/>
+   </properties>
+  </tile>
+  <tile id="43">
+   <properties>
+    <property name="sn" value="6142aa09184873004a3add0d"/>
+   </properties>
+  </tile>
+  <tile id="44">
+   <properties>
+    <property name="sn" value="6142a853184873004a3add09"/>
+   </properties>
+  </tile>
+  <tile id="45">
+   <properties>
+    <property name="sn" value="6142aa65184873004a3add10"/>
+   </properties>
+  </tile>
+  <tile id="46">
+   <properties>
+    <property name="sn" value="6142adb38244320014bb9b69"/>
+   </properties>
+  </tile>
+  <tile id="47">
+   <properties>
+    <property name="sn" value="6142ae4f184873004a3add23"/>
+   </properties>
+  </tile>
+  <tile id="48">
+   <properties>
+    <property name="sn" value="6142ae9c184873004a3add25"/>
+   </properties>
+  </tile>
+  <tile id="49">
+   <properties>
+    <property name="sn" value="618e24581b7bfd0010fc19a7"/>
+   </properties>
+  </tile>
+  <tile id="50">
+   <properties>
+    <property name="sn" value="619379091b7bfd0010fc1d12"/>
+   </properties>
+  </tile>
+  <tile id="51">
+   <properties>
+    <property name="sn" value="6197048b97569c00117fe90f"/>
+   </properties>
+  </tile>
+  <tile id="52">
+   <properties>
+    <property name="sn" value="619704e997569c00117fe912"/>
+   </properties>
+  </tile>
+  <tile id="53">
+   <properties>
+    <property name="sn" value="61e0df08f10f380011ebc267"/>
+   </properties>
+  </tile>
+  <tile id="54">
+   <properties>
+    <property name="sn" value="6200d096540dc200218f89fa"/>
+   </properties>
+  </tile>
+  <tile id="55">
+   <properties>
+    <property name="sn" value="6200e638540dc200218f8a24"/>
+   </properties>
+  </tile>
+  <tile id="56">
+   <properties>
+    <property name="sn" value="620c722958b7e70011e2176c"/>
+   </properties>
+  </tile>
+  <tile id="57">
+   <properties>
+    <property name="sn" value="623062468e069200112ec4b9"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer id="1" name="ground-layer" width="20" height="26">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,
+0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,
+0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,
+0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,
+0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,
+0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,
+0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,
+0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,
+0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,
+0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,
+0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,
+0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+</map>

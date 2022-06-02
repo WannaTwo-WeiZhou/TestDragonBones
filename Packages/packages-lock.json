@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "com.digi.gamecapsule": {
-      "version": "file:D:/MyDocuments/Projects/picatownmobile/Packages/com.digi.gamecapsule",
+      "version": "file:D:/MyDocuments/Projects/picatownmobile/client/Packages/com.digi.gamecapsule/GameCapsule",
       "depth": 0,
       "source": "local",
       "dependencies": {}
