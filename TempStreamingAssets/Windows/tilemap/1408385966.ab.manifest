@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2984598567
+CRC: 2602526272
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: d665a2620969a5ab90b4d48776a264b1
+    Hash: 1ba4a9da4442ebd5e4603dfe7f7ee8fb
   TypeTreeHash:
     serializedVersion: 2
     Hash: 766344d002067d29eec1ae7dee599881
@@ -41,5 +41,5 @@ SerializeReferenceClassIdentifiers:
 - AssemblyName: SuperTiled2Unity
   ClassName: SuperTiled2Unity.CustomProperty
 Assets:
-- Assets/HotFix/Tilemap/1340942569-map.tmx
+- Assets/Resources/Tilemap/test02/1408385966-map.tmx
 Dependencies: []

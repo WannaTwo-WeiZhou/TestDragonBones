@@ -1,5 +1,4 @@
 using SuperTiled2Unity;
-using SuperTiled2Unity.Editor;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -12,7 +11,8 @@ public class LoadTilemapAB : MonoBehaviour
 {
     async Task Start()
     {
-        string url = "file:///" + Application.dataPath + "/../TempStreamingAssets/Windows/tilemap/1340942569.ab";
+        string url = "file:///" + Application.dataPath + "/../TempStreamingAssets/Windows/tilemap/1408385966.ab";
+        url = "http://58.246.181.130:1280//game/resource/61dbd5cbbdc7560011839c3b/0.0.6/mapdata/1408385966.ab";
         await InstantiateObject(url);
 
     }
@@ -32,8 +32,8 @@ public class LoadTilemapAB : MonoBehaviour
         }
 
         AssetBundle bundle = UnityEngine.Networking.DownloadHandlerAssetBundle.GetContent(request);
-        var tileset = ScriptableObject.FindObjectOfType<SuperTileset>();
-        GameObject prefab = bundle.LoadAsset<GameObject>("1340942569-map");
+        //var tileset = ScriptableObject.FindObjectOfType<SuperTileset>();
+        GameObject prefab = bundle.LoadAsset<GameObject>("1408385966-map");
         GameObject go = Instantiate(prefab);
         var superMap = go.GetComponent<SuperMap>();
         var tilemap = go.GetComponentInChildren<Tilemap>();

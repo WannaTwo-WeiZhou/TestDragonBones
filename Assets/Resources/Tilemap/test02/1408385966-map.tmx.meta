@@ -1,0 +1,27 @@
+fileFormatVersion: 2
+guid: de5546a744ce0904a86b4020572e44b4
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: tilemap/1408385966
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 1fa25d03934ea624a82bf2fcee6f0873, type: 3}
+  missingFiles: []
+  errors: []
+  warnings:
+  - Tileset 'ground' is an embedded tileset. Exported tilesets are preferred.
+  missingSortingLayers: []
+  missingLayers: []
+  missingTags: []
+  importerVersion: 24
+  pixelsPerUnit: 100
+  edgesPerEllipse: 32
+  numberOfObjectsImported: 10
+  tilesAsObjects: 0
+  sortingMode: 0
+  isIsometric: 1
+  customImporterClassName: 
+  internalTilesets:
+  - {instanceID: 0}
