@@ -7,6 +7,7 @@ public class TestReplace : MonoBehaviour
 {
     public UnityArmatureComponent _armatureComp;
     public GameObject _replaceGO;
+    public Texture _replaceTexture;
 
     private Armature _armature;
     private UnitySlot _slot;
@@ -15,6 +16,9 @@ public class TestReplace : MonoBehaviour
     {
         _armature = _armatureComp.armature;
         _slot = _armature.GetSlot("bleg_spec_3") as UnitySlot;
+
+        var meshRenderer = _replaceGO.GetComponent<MeshRenderer>();
+        meshRenderer.material.mainTexture = _replaceTexture;
     }
 
     // Update is called once per frame
