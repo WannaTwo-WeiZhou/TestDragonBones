@@ -7,52 +7,95 @@ public class TilemapAssetBundleBuilder
 {
     private static string AB_SOURCE_RELATIVE_PATH = "HotFix/Tilemap/";
 
+    private static Dictionary<string, bool> ImportAssetsStatus = new Dictionary<string, bool>();
+    private static List<string> AssetBundleNames = new List<string>();
+
     [MenuItem("Assets/Tilemap/StartBuild")]
     public static void StartBuild()
     {
+        ImportAssetsStatus.Clear();
+        AssetBundleNames.Clear();
+
         // copy to Assets/HotFix/Tilemap
         // 最终在外部做
         var targetPath = Path.Combine(Application.dataPath, AB_SOURCE_RELATIVE_PATH);
-        if (Directory.Exists(targetPath))
-        {
-            Directory.Delete(targetPath, true);
-        }
-        Directory.CreateDirectory(targetPath);
-        var sourcePath = Path.Combine(Application.dataPath, "../Test_TooqingEditor/");
-        CopyDirectory(sourcePath, targetPath);
+        //if (Directory.Exists(targetPath))
+        //{
+        //    Directory.Delete(targetPath, true);
+        //}
+        //BuildTarget bt = GetBuildTarget();
+        //var br = GetBundleRoot(bt);
+        //if (Directory.Exists(br))
+        //{
+        //    Directory.Delete(br, true);
+        //}
+        //Directory.CreateDirectory(targetPath);
+        //var sourcePath = Path.Combine(Application.dataPath, "../Test_TooqingEditor/");
+        //CopyDirectory(sourcePath, targetPath);
 
         // import assets
         DirectoryInfo targetInfo = new DirectoryInfo(targetPath);
         FileInfo[] files = targetInfo.GetFiles();
+        List<string> imports = new List<string>();
         for (int i = 0; i < files.Length; i++)
         {
+            if (files[i].Name.EndsWith(".meta")) continue;
+            ImportAssetsStatus[files[i].Name] = false;
             var fileRelativePath = Path.Combine("Assets/", Path.Combine(AB_SOURCE_RELATIVE_PATH, files[i].Name));
-            AssetDatabase.ImportAsset(fileRelativePath);
+            Debug.Log("TilemapAssetBundleBuilder import asset: " + fileRelativePath);
+            imports.Add(fileRelativePath);
+        }
+        foreach (var path in imports)
+        {
+            AssetDatabase.ImportAsset(path);
         }
 
         // wait for "OnPostprocessAllAssets"
     }
 
-    public static void SetBundleName(string assetPath)
+    public static void AssetImported(string assetPath)
     {
         FileInfo info = new FileInfo(assetPath);
-        if (!info.Name.EndsWith("-map.tmx")) return;
-        var bundleName = "tilemap/" + info.Name.Replace("-map.tmx", "");
-        AssetImporter.GetAtPath(assetPath).SetAssetBundleNameAndVariant(bundleName, "");
+        if (!ImportAssetsStatus.ContainsKey(info.Name)) return;
+        Debug.Log("TilemapAssetBundleBuilder asset imported: " + assetPath);
+
+        if (info.Name.EndsWith("-map.tmx"))
+        {
+            var bundleName = "tilemap/" + info.Name.Replace("-map.tmx", "");
+            AssetImporter.GetAtPath(assetPath).SetAssetBundleNameAndVariant(bundleName, "");
+            AssetBundleNames.Add(bundleName);
+        }
+        ImportAssetsStatus[info.Name] = true;
+
+        bool allImported = true;
+        foreach (var item in ImportAssetsStatus)
+        {
+            if (!item.Value)
+            {
+                allImported = false;
+                break;
+            }
+        }
+
+        if (allImported)
+        {
+            ImportAssetsStatus.Clear();
+            BuildAssetBundles();
+        }
     }
 
-    public static void BuildAssetBundles()
+    private static void BuildAssetBundles()
     {
+        Debug.Log("TilemapAssetBundleBuilder BuildAssetBundles()");
         BuildTarget bt = GetBuildTarget();
         var br = GetBundleRoot(bt);
 
         AssetDatabase.RemoveUnusedAssetBundleNames();
-        string[] names = AssetDatabase.GetAllAssetBundleNames();
         var assetBundleBuildList = new List<AssetBundleBuild>();
 
-        foreach (var name in names)
+        foreach (var name in AssetBundleNames)
         {
-            if (!name.StartsWith("tilemap")) continue;
+            Debug.Log("TilemapAssetBundleBuilder build asset bundle: " + name);
             string[] assetPaths = AssetDatabase.GetAssetPathsFromAssetBundle(name);
             AssetBundleBuild assetBundleBuild = new AssetBundleBuild();
             assetBundleBuild.assetBundleName = name + ".ab";
@@ -60,8 +103,10 @@ public class TilemapAssetBundleBuilder
             assetBundleBuild.assetNames = assetPaths;
             assetBundleBuildList.Add(assetBundleBuild);
         }
+        AssetBundleNames.Clear();
 
         var result = BuildPipeline.BuildAssetBundles(br, assetBundleBuildList.ToArray(), BuildAssetBundleOptions.StrictMode, bt);
+        Debug.Log("TilemapAssetBundleBuilder finish");
     }
 
     private static void CopyDirectory(string srcDir, string tgtDir)
@@ -102,7 +147,8 @@ public class TilemapAssetBundleBuilder
 
     private static string GetBundleRoot(BuildTarget bt)
     {
-        var p = Path.Combine(Application.dataPath, "../TempStreamingAssets/" + GetBundleFolderName(bt));
+        //var p = Path.Combine(Application.dataPath, "../TempStreamingAssets/" + GetBundleFolderName(bt));
+        var p = Path.Combine(Application.dataPath, "../TempStreamingAssets");
         if (!Directory.Exists(p))
         {
             Directory.CreateDirectory(p);
@@ -171,11 +217,7 @@ public class PostProcessImportAsset : AssetPostprocessor
 
         foreach (var imported in importedAssets)
         {
-            Debug.Log("Imported: " + imported);
-            if (imported.EndsWith("-map.tmx"))
-                TilemapAssetBundleBuilder.SetBundleName(imported);
+            TilemapAssetBundleBuilder.AssetImported(imported);
         }
-
-        TilemapAssetBundleBuilder.BuildAssetBundles();
     }
 }

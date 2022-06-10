@@ -6,7 +6,7 @@ using UnityEngine;
 public class TestReplace : MonoBehaviour
 {
     public UnityArmatureComponent _armatureComp;
-    //public GameObject _replaceGO;
+    public GameObject _replaceGO;
 
     private Armature _armature;
     private UnitySlot _slot;
@@ -14,19 +14,21 @@ public class TestReplace : MonoBehaviour
     void Start()
     {
         _armature = _armatureComp.armature;
-        _slot = _armature.GetSlot("bleg_cost_1") as UnitySlot;
+        _slot = _armature.GetSlot("bleg_spec_3") as UnitySlot;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //if (Input.GetMouseButtonUp(0))
-        //{
-        //    _slot.display = _replaceGO;
-        //}
-        //else if (Input.GetMouseButtonUp(1))
-        //{
-            
-        //}
+        if (Input.GetMouseButtonUp(0))
+        {
+            _slot.display = _replaceGO;
+            //GameObject display = _slot.display as GameObject;
+            //display.SetActive(false);
+        }
+        else if (Input.GetMouseButtonUp(1))
+        {
+
+        }
     }
 }
