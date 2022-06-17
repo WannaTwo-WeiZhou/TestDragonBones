@@ -58,6 +58,10 @@ public class TestReplace : MonoBehaviour
     {
         if (Input.GetMouseButtonUp(0))
         {
+            if (_slot.display != null)
+            {
+                _replaceGO.layer = (_slot.display as GameObject).layer;
+            }
             _slot.display = _replaceGO;
 
             // Òþ²ØµÄ²å²Û
