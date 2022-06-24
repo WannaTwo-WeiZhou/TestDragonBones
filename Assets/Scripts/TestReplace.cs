@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class TestReplace : MonoBehaviour
 {
+    public UnityEngine.Transform _armatureParent;
     public UnityArmatureComponent _armatureComp;
     public GameObject _replaceGO;
     public Texture _replaceTexture;
@@ -14,6 +15,24 @@ public class TestReplace : MonoBehaviour
 
     void Start()
     {
+        UnityFactory.factory.LoadDragonBonesData($"DragonBones/bones_human01_ske");
+        UnityFactory.factory.LoadTextureAtlasData($"DragonBones/bones_human01_tex");
+
+        if (_armatureComp != null)
+        {
+            GameObject.Destroy(_armatureComp.gameObject);
+        }
+
+        _armatureComp = UnityFactory.factory.BuildArmatureComponent("Armature");
+
+        foreach (UnityEngine.Transform item in _armatureParent)
+        {
+            item.position = new Vector3(Random.Range(-4f, 4f), Random.Range(-5f, 5f));
+            UnityArmatureComponent armComp = item.gameObject.GetComponent<UnityArmatureComponent>();
+            var animation = armComp.armature.animation;
+            animation.Play(animation.animationNames[Random.Range(0, animation.animationNames.Count)]);
+        }
+
         _armature = _armatureComp.armature;
         _slot = _armature.GetSlot("bleg_spec_3") as UnitySlot;
 

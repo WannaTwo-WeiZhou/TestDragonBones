@@ -220,6 +220,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdcecae1841e4184aa84ccde2c3ca92f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Count: 100
+  Count: 1
   PIUrls:
   - https://osd-alpha.tooqing.com/pixelpai/ElementNode/61f24706540dc200218f8781/8/61f24706540dc200218f8781.pi
